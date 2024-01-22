@@ -7,7 +7,12 @@ import { highlight } from 'lib/shiki'
 import GlobalStyle from '../globalStyles';
 
 export default function Home({
-  highlightedHtml
+  sampleBru,
+  sampleMultimap,
+  sampleArray,
+  sampleMultistring,
+  sampleAnnotations,
+  sampleComments
 }) {
   return (
     <div className="container flex flex-col root home-page" style={{fontFamily: 'Inter', maxWidth: '1024px'}}>
@@ -37,7 +42,7 @@ export default function Home({
             to save details of an API request in a file.
           </p>
 
-          <ShikiCodeBlock html={highlightedHtml}/>
+          <ShikiCodeBlock html={sampleBru}/>
 
           <h2 className="text-xl font-medium mt-8 text-yellow-600">Design Goals</h2>
 
@@ -74,6 +79,41 @@ export default function Home({
             <li>Multistring</li>
           </ul>
 
+          <h2 className="text-xl font-medium mt-8 text-yellow-600">Multimap</h2>
+          <div className='mt-2 mb-4'>
+            A Multimap is a dictionary (key-value pair) thet can have duplicate keys, enclosed in curly braces. Keys and Values are separated by a colon : and key-value pairs are separated by a newline.
+            Values may be primitive or composite types.
+          </div>
+
+          <ShikiCodeBlock html={sampleMultimap}/>
+
+          <h2 className="text-xl font-medium mt-8 text-yellow-600">Arrays</h2>
+          <div className='mt-2 mb-4'>
+            An Array is a list of values separated by a newline, enclosed in square brackets.
+          </div>
+
+          <ShikiCodeBlock html={sampleArray}/>
+
+          <h2 className="text-xl font-medium mt-8 text-yellow-600">Multistring</h2>
+          <div className='mt-2 mb-4'>
+            A Multistring is a string that spans multiple lines, enclosed in triple single/double quotes. The content begins on the line after the opening quotes and ends on the line before the closing quotes.
+          </div>
+
+          <ShikiCodeBlock html={sampleMultistring}/>
+
+          <h2 className="text-xl font-medium mt-8 text-yellow-600">Annotations</h2>
+          <div className='mt-2 mb-4'>
+          Annotations are used to ascribe additional information about a key-value pair. An annotation starts with @ and ends with a newline. Arguments may be passed to an annotation in parentheses and separated by commas. Only primitive types can be passed as arguments.
+          </div>
+
+          <ShikiCodeBlock html={sampleAnnotations}/>
+
+          <h2 className="text-xl font-medium mt-8 text-yellow-600">Comments</h2>
+          <div className='mt-2 mb-4'>
+            Comments start with pound/hash - # and end with a newline. Inline comments are not supported.
+          </div>
+
+          <ShikiCodeBlock html={sampleComments}/>
         </div>
       </main>
       <Footer/>
@@ -82,7 +122,7 @@ export default function Home({
 };
 
 export const getServerSideProps = async () => {
-  const code = `http: {
+  const sampleBru = `http: {
   method: GET
   url: www.usebruno.com/hello
   headers: {
@@ -97,16 +137,77 @@ export const getServerSideProps = async () => {
     '''
   }
 }
-`
-  const html = await highlight(
-    code,
-    'vitesse-light',
-    'groovy'
-  )
+`;
+
+  const sampleMultimap = `http: {
+  query: {
+    userId: 1
+    userId: 2
+  }
+}`;
+
+  const sampleArray = `meta: {
+  name: Get Users
+  seq: 1
+  tags: [
+    sanity
+    regression
+  ]
+}`;
+
+  const sampleMultistring = `http: {
+  body: {
+    type: text
+    data: '''
+      This is a multiline string.
+      It can span multiple lines.
+    '''
+  }
+}`;
+
+  const sampleAnnotations = `http: {
+  method: 'GET'
+  url: 'https://www.usebruno.com/hello'
+  headers: {
+    Content-Type: 'application/json'
+
+    @disabled
+    @description('This is a sample request')
+    Authorization: 'Bearer{{token}}'
+  }
+  param: {
+    query: {
+      @description('The status of the user')
+      @enum('active', 'inactive')
+      status: 'active'
+    }
+  }
+}`;
+
+  const sampleComments = `# This is a comment
+
+http: {
+  # This is a comment, too
+}`;
+
+  const highlightCode = async (code) => {
+    const html = await highlight(
+      code,
+      'vitesse-light',
+      'bash'
+    );
+
+    return html;
+  };
 
   return {
     props: {
-      highlightedHtml: html
+      sampleBru: await highlightCode(sampleBru),
+      sampleMultimap: await highlightCode(sampleMultimap),
+      sampleArray: await highlightCode(sampleArray),
+      sampleMultistring: await highlightCode(sampleMultistring),
+      sampleAnnotations: await highlightCode(sampleAnnotations),
+      sampleComments: await highlightCode(sampleComments)
     }
   }
 }
