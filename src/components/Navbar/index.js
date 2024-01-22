@@ -47,7 +47,7 @@ const Navbar = () => {
             <Link href="/examples" legacyBehavior>
               <a className="mr-2 hover:text-yellow-600 transition">Examples</a>
             </Link>
-            <Link href="https://bru-playground.vercel.app" legacyBehavior>
+            <Link href="https://play.brulang.org" legacyBehavior>
               <a className="mr-2 hover:text-yellow-600 transition">Playground</a>
             </Link>
             <Link href="https://github.com/brulang/bru-lang/blob/main/bru-spec-v1.md" legacyBehavior>

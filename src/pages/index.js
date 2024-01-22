@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Bruno from "components/Bruno";
 import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
 import ShikiCodeBlock from 'components/ShikiCodeBlock';
@@ -26,7 +27,13 @@ export default function Home({
         <Navbar />
 
         <div>
-          <p className='my-4'>
+          <div className='mt-8'>
+            <Bruno width={100} />
+          </div>
+          <h2 className="text-3xl font-semibold mt-2 text-yellow-600">
+            Bru Markup Language
+          </h2>
+          <p className='mt-8 mb-4'>
             Bru is a simple markup language with{' '}
             <a href="https://json.org" className="text-blue-500">
               JSON
