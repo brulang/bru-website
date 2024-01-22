@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
+  font-size: 16px;
   a {
     margin-left: 1rem;
   }

@@ -44,6 +44,19 @@ export default function Home({
 
           <ShikiCodeBlock html={sampleBru}/>
 
+          <h2 className="text-xl font-medium mt-8 text-yellow-600">Why</h2>
+          <div className='mt-4'>
+            The Bru syntax naturally evolved from our need to represent API requests in a human readable format in{' '}
+            <a href="https://www.usebruno.com" className="text-blue-500">
+              Bruno
+            </a>{' '}.
+            There were two key reasons we could not to use the big three - JSON, YAML and TOML:
+          </div>
+          <ul className="list-disc pl-6 space-y-1 ml-4 mt-4">
+            <li className="list-item">The need for multimaps to represent duplicate keys</li>
+            <li className="list-item">The need for annotations to ascribe additional information about a key-value pair</li>
+          </ul>
+
           <h2 className="text-xl font-medium mt-8 text-yellow-600">Design Goals</h2>
 
           <ul className="list-disc pl-6 space-y-1 ml-4 mt-2">

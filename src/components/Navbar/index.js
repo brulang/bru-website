@@ -45,13 +45,13 @@ const Navbar = () => {
 
           <nav className={`${menuOpen ? 'flex' : 'hidden'}`}>
             <Link href="/examples" legacyBehavior>
-              <a className="mr-3 hover:text-yellow-600 transition">Examples</a>
+              <a className="mr-2 hover:text-yellow-600 transition">Examples</a>
             </Link>
             <Link href="https://bru-playground.vercel.app" legacyBehavior>
-              <a className="mr-3 hover:text-yellow-600 transition">Playground</a>
+              <a className="mr-2 hover:text-yellow-600 transition">Playground</a>
             </Link>
             <Link href="https://github.com/brulang/bru-lang" legacyBehavior>
-              <a className="mr-3 hover:text-yellow-600 transition">Github</a>
+              <a className="mr-2 hover:text-yellow-600 transition">Github</a>
             </Link>
           </nav>
           <button className="toggle inline-block sm:hidden w-8 h-8 text-slate-700 p-1" onClick={menuToggle}>
