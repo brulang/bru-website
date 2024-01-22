@@ -35,11 +35,8 @@ export default function Examples({
           <ShikiCodeBlock html={requestBru}/>
 
           <h2 className="text-xl font-medium mt-8 mb-4 text-yellow-600">openapi.bru</h2>
-          <div className='mt-2'>
+          <div className='mt-2 mt-4'>
             For this example, we are also displaying the corresponding OpenAPI YAML file. This is to demonstrate how a markup lang with support for multimaps and annotations improves readability so much.
-          </div>
-          <div className='mt-2 mb-4'>
-            We still haven't implemented syntax highlighting for OpenAPI Bru files. Once implemented, the Bru file will look even better.
           </div>
           <ShikiCodeBlock html={openapiYml}/>
           <div className='mt-4'>
@@ -200,7 +197,7 @@ paths: {
   }
 }`;
 
-  const highlightCodeBash = async (code) => {
+  const highlightCode = async (code) => {
     const html = await highlight(
       code,
       'vitesse-light',
@@ -210,32 +207,12 @@ paths: {
     return html;
   };
 
-  const highlightCodeYaml = async (code) => {
-    const html = await highlight(
-      code,
-      'vitesse-light',
-      'yaml'
-    );
-
-    return html;
-  };
-
-  const highlightCodeGroovy = async (code) => {
-    const html = await highlight(
-      code,
-      'vitesse-light',
-      'groovy'
-    );
-
-    return html;
-  }
-
   return {
     props: {
-      packageJson: await highlightCodeBash(packageJson),
-      requestBru: await highlightCodeBash(requestBru),
-      openapiYml: await highlightCodeYaml(openapiYml),
-      openapiBru: await highlightCodeGroovy(openapiBru)
+      packageJson: await highlightCode(packageJson),
+      requestBru: await highlightCode(requestBru),
+      openapiYml: await highlightCode(openapiYml),
+      openapiBru: await highlightCode(openapiBru)
     }
   }
 }
